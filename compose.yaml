@@ -5,6 +5,7 @@ services:
       - .env
     ports:
       - "8890:8888"
+      - "8050:8050"
     volumes: 
       - ./:/Project_GDP
       - ./settings.txt:/root/.jupyter/lab/user-settings/@jupyterlab/notebook-extension/tracker.jupyterlab-settings
@@ -21,8 +22,20 @@ services:
     networks:
       - GDPnetwork
 
+  mongo:
+    image: mongo:latest
+    env_file:
+      - .env
+    volumes:
+      - mongodata:/data/GDPnetwork
+    ports:
+      - "27017:27017"
+    networks:
+      - GDPnetwork
+
 volumes:
   postgresdata:
+  mongodata:
 
 networks:
   GDPnetwork:
