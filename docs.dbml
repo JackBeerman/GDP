@@ -1,0 +1,38 @@
+Project WorldTrade {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # World Imports, Exports, Tariffs, Location, and HDI
+    This database was created by Jack. If there is a problem it’s his fault.
+  '''
+}
+Table year_country as YC{
+  country_name_exp varchar [pk]
+  year int [pk]
+  country_code varchar
+  exports float
+  imports float
+  gdp float
+  tariff_rate float
+  note: "Year data for trade visualizations over time"
+}
+Table hdi as H{
+  country_name_hdi varchar [pk]
+  country varchar
+  latitude float
+  longitude float
+  rank int
+  hdi_value float
+  life_exp float
+  exp_years_of_school float
+  mean_years_of_school float
+  gni float
+  old_hdi int
+  note: "HDI indicators for regression model and geo coordinates"
+}
+
+
+
+
+Ref: H.country_name_hdi > YC.country_name_exp 
+
+
